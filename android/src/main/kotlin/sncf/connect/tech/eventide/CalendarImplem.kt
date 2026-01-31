@@ -329,6 +329,7 @@ class CalendarImplem(
         title: String,
         startDate: Long,
         endDate: Long,
+        timezone: String,
         isAllDay: Boolean,
         description: String?,
         url: String?,
@@ -361,7 +362,7 @@ class CalendarImplem(
                             put(CalendarContract.Events.EVENT_LOCATION, location)
                             put(CalendarContract.Events.DTSTART, startDate)
                             put(CalendarContract.Events.DTEND, endDate)
-                            put(CalendarContract.Events.EVENT_TIMEZONE, "UTC")
+                            put(CalendarContract.Events.EVENT_TIMEZONE, timezone ?: "UTC")
                             put(CalendarContract.Events.ALL_DAY, isAllDay.toInt())
                         }
 
@@ -389,6 +390,7 @@ class CalendarImplem(
                                     title = title,
                                     startDate = startDate,
                                     endDate = endDate,
+                                    timezone = timezone,
                                     calendarId = calendarId,
                                     description = description,
                                     url = url,
@@ -557,6 +559,7 @@ class CalendarImplem(
                             val eventLocation = c.getString(c.getColumnIndexOrThrow(CalendarContract.Events.EVENT_LOCATION))
                             val start = c.getLong(c.getColumnIndexOrThrow(CalendarContract.Events.DTSTART))
                             val end = c.getLong(c.getColumnIndexOrThrow(CalendarContract.Events.DTEND))
+                            val timezone = c.getString(c.getColumnIndexOrThrow(CalendarContract.Events.EVENT_TIMEZONE))
                             val isAllDay = c.getInt(c.getColumnIndexOrThrow(CalendarContract.Events.ALL_DAY)).toBoolean()
 
                             val attendees = mutableListOf<Attendee>()
@@ -592,6 +595,7 @@ class CalendarImplem(
                                     title = title,
                                     startDate = start,
                                     endDate = end,
+                                    timezone = timezone,
                                     calendarId = calendarId,
                                     description = parsedDescription,
                                     url = parsedUrl,
