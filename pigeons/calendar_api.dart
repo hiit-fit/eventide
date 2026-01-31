@@ -35,6 +35,7 @@ abstract class CalendarApi {
     required String title,
     required int startDate,
     required int endDate,
+    required String timezone,
     required bool isAllDay,
     required String? description,
     required String? url,
@@ -47,6 +48,7 @@ abstract class CalendarApi {
     required String title,
     required int startDate,
     required int endDate,
+    required String timezone,
     required bool isAllDay,
     required String? description,
     required String? url,
@@ -59,6 +61,7 @@ abstract class CalendarApi {
     String? title,
     int? startDate,
     int? endDate,
+    String? timezone,
     bool? isAllDay,
     String? description,
     String? url,
@@ -117,6 +120,7 @@ final class Event {
   final bool isAllDay;
   final int startDate;
   final int endDate;
+  final String timezone;
   final List<int> reminders;
   final List<Attendee> attendees;
   final String? description;
@@ -129,6 +133,7 @@ final class Event {
     required this.isAllDay,
     required this.startDate,
     required this.endDate,
+    required this.timezone,
     required this.calendarId,
     required this.reminders,
     required this.attendees,

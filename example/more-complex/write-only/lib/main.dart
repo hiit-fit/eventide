@@ -227,6 +227,7 @@ class WriteOnlyDemoPage extends StatelessWidget {
                     title: title,
                     description: description,
                     isAllDay: isAllDay,
+                    timezone: 'UTC',
                     startDate: startDate,
                     endDate: endDate,
                   );

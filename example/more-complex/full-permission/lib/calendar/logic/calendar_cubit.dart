@@ -131,6 +131,7 @@ final class CalendarCubit extends Cubit<CalendarState> {
         final event = await _eventide.createEvent(
           title: title,
           description: description,
+          timezone: 'UTC',
           isAllDay: isAllDay,
           startDate: startDate,
           endDate: endDate,

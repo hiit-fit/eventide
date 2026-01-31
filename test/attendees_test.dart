@@ -35,6 +35,7 @@ void main() {
           title: 'title',
           startDate: DateTime.now().millisecondsSinceEpoch,
           endDate: DateTime.now().add(const Duration(minutes: 30)).millisecondsSinceEpoch,
+          timezone: 'UTC',
           isAllDay: false,
           description: 'description',
           url: 'url',
@@ -73,6 +74,7 @@ void main() {
         (_) async => Event(
           id: 'id',
           title: 'title',
+          timezone: 'UTC',
           startDate: DateTime.now().millisecondsSinceEpoch,
           endDate: DateTime.now().add(const Duration(minutes: 30)).millisecondsSinceEpoch,
           isAllDay: false,

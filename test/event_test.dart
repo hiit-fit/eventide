@@ -36,6 +36,7 @@ void main() {
     description: null,
     url: null,
     location: null,
+    timezone: 'UTC',
     reminders: [],
     attendees: [],
   );
@@ -53,6 +54,7 @@ void main() {
       startDate: startDate.millisecondsSinceEpoch,
       endDate: endDate.add(const Duration(hours: 1)).millisecondsSinceEpoch,
       calendarId: '1',
+      timezone: 'UTC',
       reminders: [],
       attendees: [],
     );
@@ -60,6 +62,7 @@ void main() {
     when(
       () => mockCalendarApi.createEvent(
         title: any(named: 'title'),
+        timezone: any(named: 'timezone'),
         isAllDay: any(named: 'isAllDay'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
@@ -77,6 +80,7 @@ void main() {
       isAllDay: true,
       startDate: startDate,
       endDate: endDate,
+      timezone: 'UTC',
       calendarId: '1',
     );
 
@@ -85,6 +89,7 @@ void main() {
     verify(
       () => mockCalendarApi.createEvent(
         title: any(named: 'title'),
+        timezone: any(named: 'timezone'),
         isAllDay: any(named: 'isAllDay'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
@@ -107,6 +112,7 @@ void main() {
       endDate: endDate.millisecondsSinceEpoch,
       calendarId: '1',
       location: '1 Place Bellecour, 69002 Lyon',
+      timezone: 'UTC',
       reminders: [],
       attendees: [],
     );
@@ -115,6 +121,7 @@ void main() {
       () => mockCalendarApi.createEvent(
         title: any(named: 'title'),
         isAllDay: any(named: 'isAllDay'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         calendarId: any(named: 'calendarId'),
@@ -131,6 +138,7 @@ void main() {
       startDate: startDate,
       endDate: endDate,
       calendarId: '1',
+      timezone: 'UTC',
       location: '1 Place Bellecour, 69002 Lyon',
     );
 
@@ -140,6 +148,7 @@ void main() {
       () => mockCalendarApi.createEvent(
         title: any(named: 'title'),
         isAllDay: any(named: 'isAllDay'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         calendarId: any(named: 'calendarId'),
@@ -157,6 +166,7 @@ void main() {
       () => mockCalendarApi.createEvent(
         title: any(named: 'title'),
         isAllDay: any(named: 'isAllDay'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         calendarId: any(named: 'calendarId'),
@@ -168,8 +178,13 @@ void main() {
     ).thenThrow(ETGenericException(message: 'API Error'));
 
     // When
-    Future<ETEvent> call() =>
-        eventide.createEvent(title: 'Test Event', startDate: startDate, endDate: endDate, calendarId: '');
+    Future<ETEvent> call() => eventide.createEvent(
+      title: 'Test Event',
+      startDate: startDate,
+      endDate: endDate,
+      calendarId: '',
+      timezone: 'UTC',
+    );
 
     // Then
     expect(call, throwsException);
@@ -177,6 +192,7 @@ void main() {
       () => mockCalendarApi.createEvent(
         title: any(named: 'title'),
         isAllDay: any(named: 'isAllDay'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         calendarId: any(named: 'calendarId'),
@@ -197,6 +213,7 @@ void main() {
       startDate: startDate.millisecondsSinceEpoch,
       endDate: endDate.add(const Duration(hours: 1)).millisecondsSinceEpoch,
       calendarId: 'default',
+      timezone: 'UTC',
       description: 'Test Description',
       url: 'http://test.com',
       reminders: [],
@@ -207,6 +224,7 @@ void main() {
       () => mockCalendarApi.createEventInDefaultCalendar(
         title: any(named: 'title'),
         isAllDay: any(named: 'isAllDay'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         description: any(named: 'description'),
@@ -223,6 +241,7 @@ void main() {
       endDate: endDate,
       description: 'Test Description',
       url: 'http://test.com',
+      timezone: 'UTC',
     );
 
     // Then
@@ -230,6 +249,7 @@ void main() {
       () => mockCalendarApi.createEventInDefaultCalendar(
         title: 'Test Event',
         isAllDay: false,
+        timezone: 'UTC',
         startDate: startDate.millisecondsSinceEpoch,
         endDate: endDate.millisecondsSinceEpoch,
         description: 'Test Description',
@@ -249,6 +269,7 @@ void main() {
       startDate: startDate.millisecondsSinceEpoch,
       endDate: endDate.add(const Duration(hours: 1)).millisecondsSinceEpoch,
       calendarId: 'default',
+      timezone: 'UTC',
       reminders: [],
       attendees: [],
     );
@@ -257,6 +278,7 @@ void main() {
       () => mockCalendarApi.createEventInDefaultCalendar(
         title: any(named: 'title'),
         isAllDay: any(named: 'isAllDay'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         description: any(named: 'description'),
@@ -271,6 +293,7 @@ void main() {
       title: 'All Day Event',
       startDate: startDate,
       endDate: endDate,
+      timezone: 'UTC',
       isAllDay: true,
     );
 
@@ -279,6 +302,7 @@ void main() {
       () => mockCalendarApi.createEventInDefaultCalendar(
         title: 'All Day Event',
         isAllDay: true,
+        timezone: 'UTC',
         startDate: startDate.millisecondsSinceEpoch,
         endDate: endDate.millisecondsSinceEpoch,
         description: null,
@@ -295,6 +319,7 @@ void main() {
       () => mockCalendarApi.createEventInDefaultCalendar(
         title: any(named: 'title'),
         isAllDay: any(named: 'isAllDay'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         description: any(named: 'description'),
@@ -305,8 +330,12 @@ void main() {
     ).thenThrow(ETGenericException(message: 'API Error'));
 
     // When
-    Future<void> call() =>
-        eventide.createEventInDefaultCalendar(title: 'Test Event', startDate: startDate, endDate: endDate);
+    Future<void> call() => eventide.createEventInDefaultCalendar(
+      title: 'Test Event',
+      startDate: startDate,
+      endDate: endDate,
+      timezone: 'UTC',
+    );
 
     // Then
     expect(call, throwsException);
@@ -314,6 +343,7 @@ void main() {
       () => mockCalendarApi.createEventInDefaultCalendar(
         title: 'Test Event',
         isAllDay: false,
+        timezone: 'UTC',
         startDate: startDate.millisecondsSinceEpoch,
         endDate: endDate.millisecondsSinceEpoch,
         description: null,
@@ -338,6 +368,7 @@ void main() {
       const reminders = [Duration(minutes: 10), Duration(minutes: 20)];
       final event = Event(
         id: '1',
+        timezone: 'UTC',
         title: 'Test Event',
         isAllDay: false,
         startDate: startDate.millisecondsSinceEpoch,
@@ -351,6 +382,7 @@ void main() {
         () => mockCalendarApi.createEventInDefaultCalendar(
           title: any(named: 'title'),
           isAllDay: any(named: 'isAllDay'),
+          timezone: any(named: 'timezone'),
           startDate: any(named: 'startDate'),
           endDate: any(named: 'endDate'),
           description: any(named: 'description'),
@@ -368,6 +400,7 @@ void main() {
         title: 'Test Event',
         startDate: startDate,
         endDate: endDate,
+        timezone: 'UTC',
         reminders: reminders,
       );
 
@@ -376,6 +409,7 @@ void main() {
         () => mockCalendarApi.createEventInDefaultCalendar(
           title: 'Test Event',
           isAllDay: false,
+          timezone: 'UTC',
           startDate: startDate.millisecondsSinceEpoch,
           endDate: endDate.millisecondsSinceEpoch,
           description: null,
@@ -409,6 +443,7 @@ void main() {
           description: any(named: 'description'),
           url: any(named: 'url'),
           location: any(named: 'location'),
+          timezone: any(named: 'timezone'),
           reminders: any(named: 'reminders'),
         ),
       ).thenAnswer((_) async => event);
@@ -423,6 +458,7 @@ void main() {
         startDate: startDate,
         endDate: endDate,
         reminders: reminders,
+        timezone: 'UTC',
       );
 
       // Then
@@ -437,6 +473,7 @@ void main() {
           description: any(named: 'description'),
           url: any(named: 'url'),
           location: any(named: 'location'),
+          timezone: any(named: 'timezone'),
           reminders: [10, 20],
         ),
       ).called(1);
@@ -454,12 +491,14 @@ void main() {
         calendarId: 'default',
         reminders: [],
         attendees: [],
+        timezone: 'UTC',
         location: null,
       );
 
       when(
         () => mockCalendarApi.createEventInDefaultCalendar(
           title: any(named: 'title'),
+          timezone: any(named: 'timezone'),
           isAllDay: any(named: 'isAllDay'),
           startDate: any(named: 'startDate'),
           endDate: any(named: 'endDate'),
@@ -479,6 +518,7 @@ void main() {
         startDate: startDate,
         endDate: endDate,
         reminders: reminders,
+        timezone: 'UTC',
       );
 
       // Then
@@ -486,6 +526,7 @@ void main() {
         () => mockCalendarApi.createEventInDefaultCalendar(
           title: 'Test Event',
           isAllDay: false,
+          timezone: 'UTC',
           startDate: startDate.millisecondsSinceEpoch,
           endDate: endDate.millisecondsSinceEpoch,
           description: null,
@@ -682,6 +723,7 @@ void main() {
       startDate: utcParisDeparture.millisecondsSinceEpoch,
       endDate: utcMontrealArrival.millisecondsSinceEpoch,
       calendarId: '1',
+      timezone: 'UTC',
       reminders: [],
       attendees: [],
       location: null,
@@ -691,6 +733,7 @@ void main() {
       () => mockCalendarApi.createEvent(
         calendarId: any(named: 'calendarId'),
         title: any(named: 'title'),
+        timezone: any(named: 'timezone'),
         startDate: any(named: 'startDate'),
         endDate: any(named: 'endDate'),
         isAllDay: any(named: 'isAllDay'),
@@ -706,12 +749,14 @@ void main() {
       startDate: parisDeparture,
       endDate: montrealArrival,
       calendarId: '1',
+      timezone: 'UTC',
     );
 
     verify(
       () => mockCalendarApi.createEvent(
         calendarId: '1',
         title: 'Paris - Montréal',
+        timezone: 'UTC',
         startDate: utcParisDeparture.millisecondsSinceEpoch,
         endDate: utcMontrealArrival.millisecondsSinceEpoch,
         isAllDay: false,
@@ -734,6 +779,7 @@ void main() {
         calendarId: '1',
         description: 'Test Description',
         url: 'http://test.com',
+        timezone: 'UTC',
         reminders: [10, 20],
         attendees: [],
       );
@@ -759,6 +805,7 @@ void main() {
         calendarId: '1',
         description: 'Test Description',
         url: 'http://test.com',
+        timezone: 'UTC',
         location: '1 Place Bellecour, 69002 Lyon',
         reminders: [10, 20],
         attendees: [],
@@ -772,6 +819,7 @@ void main() {
         Event(
           id: '1',
           title: 'Test Event',
+          timezone: 'UTC',
           isAllDay: false,
           startDate: DateTime(2023, 10, 1).millisecondsSinceEpoch,
           endDate: DateTime(2023, 10, 2).millisecondsSinceEpoch,
@@ -819,6 +867,7 @@ extension on Event {
       description: description,
       url: url,
       location: location,
+      timezone: timezone,
       reminders: reminders.toList(growable: false),
       attendees: [],
     );

@@ -62,6 +62,7 @@ class _CalendarDemoState extends State<CalendarDemo> {
         title: 'Eventide Test',
         startDate: startDate,
         endDate: endDate,
+        timezone: 'UTC',
         description: 'Event created with Eventide plugin',
       );
 

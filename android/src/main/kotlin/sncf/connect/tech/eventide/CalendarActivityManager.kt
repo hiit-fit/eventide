@@ -13,6 +13,7 @@ class CalendarActivityManager(private val context: Context) {
         title: String? = null,
         startDate: Long? = null,
         endDate: Long? = null,
+        timezone: String? = null,
         isAllDay: Boolean?,
         description: String? = null,
         location: String? = null,
@@ -24,7 +25,7 @@ class CalendarActivityManager(private val context: Context) {
         intent.putExtra(CalendarContract.Events.TITLE, title)
         intent.putExtra(CalendarContract.Events.DESCRIPTION, description)
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION, location)
-        intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, "UTC")
+        intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, timezone ?: "UTC")
         intent.putExtra(CalendarContract.Events.ALL_DAY, isAllDay.toInt())
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

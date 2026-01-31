@@ -38,6 +38,7 @@ void main() {
         isAllDay: false,
         startDate: startDate.millisecondsSinceEpoch,
         endDate: endDate.millisecondsSinceEpoch,
+        timezone: 'UTC',
         calendarId: '1',
         reminders: [10 * 60],
         attendees: [],
@@ -74,6 +75,7 @@ void main() {
       final targetEvent = Event(
         id: '1',
         title: 'Test Event',
+        timezone: 'UTC',
         isAllDay: false,
         startDate: startDate.millisecondsSinceEpoch,
         endDate: endDate.millisecondsSinceEpoch,
@@ -123,6 +125,7 @@ void main() {
       final targetEvent = Event(
         id: '1',
         title: 'Test Event',
+        timezone: 'UTC',
         isAllDay: false,
         startDate: startDate.millisecondsSinceEpoch,
         endDate: endDate.millisecondsSinceEpoch,
@@ -162,6 +165,7 @@ void main() {
       final targetEvent = Event(
         id: '1',
         title: 'Test Event',
+        timezone: 'UTC',
         isAllDay: false,
         startDate: startDate.millisecondsSinceEpoch,
         endDate: endDate.millisecondsSinceEpoch,
