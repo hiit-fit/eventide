@@ -453,8 +453,8 @@ class CalendarImplem(
         title: String,
         startDate: Long,
         endDate: Long,
+        timezone: String,
         isAllDay: Boolean,
-        timezone: String?,
         description: String?,
         url: String?,
         location: String?,
@@ -966,6 +966,7 @@ class CalendarImplem(
                     val startDate = it.getLong(it.getColumnIndexOrThrow(CalendarContract.Events.DTSTART))
                     val endDate = it.getLong(it.getColumnIndexOrThrow(CalendarContract.Events.DTEND))
                     val calendarId = it.getString(it.getColumnIndexOrThrow(CalendarContract.Events.CALENDAR_ID))
+                    val timezone = it.getString(it.getColumnIndexOrThrow(CalendarContract.Events.EVENT_TIMEZONE))
 
                     val attendees = mutableListOf<Attendee>()
                     val attendeesLatch = CountDownLatch(1)
@@ -999,6 +1000,7 @@ class CalendarImplem(
                         title = title,
                         startDate = startDate,
                         endDate = endDate,
+                        timezone = timezone,
                         calendarId = calendarId,
                         description = parsedDescription,
                         url = parsedUrl,
