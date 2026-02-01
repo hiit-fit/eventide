@@ -409,8 +409,8 @@ fileprivate extension EKEvent {
             title: title,
             isAllDay: isAllDay,
             startDate: startDate.millisecondsSince1970,
-            timezone: timeZone?.identifier ?? "",
             endDate: endDate.millisecondsSince1970,
+            timezone: timeZone?.identifier ?? "",
             reminders: alarms?.map { Int64($0.relativeOffset) } ?? [],
             attendees: attendees?.compactMap {
                 Attendee(
