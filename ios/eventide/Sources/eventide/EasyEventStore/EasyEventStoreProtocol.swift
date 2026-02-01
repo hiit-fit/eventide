@@ -17,14 +17,15 @@ protocol EasyEventStoreProtocol {
     
     func deleteCalendar(calendarId: String) throws -> Void
 
-    func createEvent(calendarId: String, title: String, startDate: Date, endDate: Date, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws -> Event
+    func createEvent(calendarId: String, title: String, startDate: Date, endDate: Date, timezone: String, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws -> Event
 
-    func createEvent(title: String, startDate: Date, endDate: Date, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws
+    func createEvent(title: String, startDate: Date, endDate: Date, timezone: String, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws
 
     func presentEventCreationViewController(
         title: String?,
         startDate: Date?,
         endDate: Date?,
+        timezone: String?,
         isAllDay: Bool?,
         description: String?,
         url: String?,

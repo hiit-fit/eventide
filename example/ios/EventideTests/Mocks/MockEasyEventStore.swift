@@ -67,7 +67,7 @@ class MockEasyEventStore: EasyEventStoreProtocol {
         return calendars.map { $0.account }
     }
     
-    func createEvent(calendarId: String, title: String, startDate: Date, endDate: Date, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws -> Event {
+    func createEvent(calendarId: String, title: String, startDate: Date, endDate: Date, timezone: String, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws -> Event {
         guard let mockCalendar = calendars.first(where: { $0.id == calendarId }) else {
             throw PigeonError(
                 code: "NOT_FOUND",
@@ -93,7 +93,7 @@ class MockEasyEventStore: EasyEventStoreProtocol {
         return mockEvent.toEvent()
     }
     
-    func createEvent(title: String, startDate: Date, endDate: Date, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws {
+    func createEvent(title: String, startDate: Date, endDate: Date, timezone: String, isAllDay: Bool, description: String?, url: String?, location: String?, timeIntervals: [TimeInterval]?) throws {
         let mockEvent = MockEvent(
             id: String(calendars.first!.events.count),
             title: title,

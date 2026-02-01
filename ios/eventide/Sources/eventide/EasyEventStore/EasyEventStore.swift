@@ -112,6 +112,7 @@ final class EasyEventStore: EasyEventStoreProtocol {
         title: String,
         startDate: Date,
         endDate: Date,
+        timezone: String,
         isAllDay: Bool,
         description: String?,
         url: String?,
@@ -133,7 +134,7 @@ final class EasyEventStore: EasyEventStoreProtocol {
         ekEvent.notes = description
         ekEvent.startDate = startDate
         ekEvent.endDate = endDate
-        ekEvent.timeZone = TimeZone(identifier: "UTC")
+        ekEvent.timeZone = TimeZone(identifier: timezone)
         ekEvent.isAllDay = isAllDay
         ekEvent.alarms = timeIntervals?.compactMap({ EKAlarm(relativeOffset: $0) })
         ekEvent.location = location
@@ -160,6 +161,7 @@ final class EasyEventStore: EasyEventStoreProtocol {
         title: String,
         startDate: Date,
         endDate: Date,
+        timezone: String,
         isAllDay: Bool,
         description: String?,
         url: String?,
@@ -173,7 +175,7 @@ final class EasyEventStore: EasyEventStoreProtocol {
         ekEvent.notes = description
         ekEvent.startDate = startDate
         ekEvent.endDate = endDate
-        ekEvent.timeZone = TimeZone(identifier: "UTC")
+        ekEvent.timeZone = TimeZone(identifier: timezone)
         ekEvent.isAllDay = isAllDay
         ekEvent.alarms = timeIntervals?.compactMap({ EKAlarm(relativeOffset: $0) })
         ekEvent.location = location
@@ -199,6 +201,7 @@ final class EasyEventStore: EasyEventStoreProtocol {
         title: String?,
         startDate: Date?,
         endDate: Date?,
+        timezone: String?,
         isAllDay: Bool?,
         description: String?,
         url: String?,
@@ -210,6 +213,7 @@ final class EasyEventStore: EasyEventStoreProtocol {
             title: title,
             startDate: startDate,
             endDate: endDate,
+            timezone: timezone,
             isAllDay: isAllDay,
             description: description,
             url: url,
@@ -405,6 +409,7 @@ fileprivate extension EKEvent {
             title: title,
             isAllDay: isAllDay,
             startDate: startDate.millisecondsSince1970,
+            timezone: timeZone?.identifier ?? "",
             endDate: endDate.millisecondsSince1970,
             reminders: alarms?.map { Int64($0.relativeOffset) } ?? [],
             attendees: attendees?.compactMap {

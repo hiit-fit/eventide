@@ -22,6 +22,7 @@ class EventEditViewControllerManager: NSObject {
         title: String?,
         startDate: Date?,
         endDate: Date?,
+        timezone: String?,
         isAllDay: Bool?,
         description: String?,
         url: String?,
@@ -47,6 +48,10 @@ class EventEditViewControllerManager: NSObject {
             event.endDate = endDate
         } else {
             event.endDate = event.startDate.addingTimeInterval(3600)
+        }
+
+        if let timezone = timezone {
+            event.timeZone = TimeZone(identifier: timezone)
         }
 
         if let isAllDay = isAllDay {
